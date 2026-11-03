@@ -1,0 +1,149 @@
+{
+  "network": 61999,
+  "address": "0x5382cad86E756c0443c99260E60338e9DA9E0ce1",
+  "modelOwner": "0x42523981ff26e143bb6966b7cf25afdbf03f7aa7",
+  "id": "editorial-open",
+  "journey": {
+    "actions": [
+      0,
+      1,
+      0,
+      0
+    ],
+    "complete": true,
+    "id": "editorial-open",
+    "model_digest": "f6d9d37d7d06a16de4f74e227016625b2297ff8496d55777f61f035748893ffc",
+    "owner": "0x42523981ff26e143bb6966b7cf25afdbf03f7aa7",
+    "participant": "0xda84b8886cd0f8a3e1499c642989946b09629589",
+    "state": 3,
+    "step": 4
+  },
+  "modelDigest": "f6d9d37d7d06a16de4f74e227016625b2297ff8496d55777f61f035748893ffc",
+  "transactions": [
+    {
+      "hash": "0x9653b57a697e4d4283066215ad6183136c10d1ecf556e906726d37be6148c77c",
+      "step": 0,
+      "action": 0,
+      "receipt": {
+        "hash": "0x9653b57a697e4d4283066215ad6183136c10d1ecf556e906726d37be6148c77c",
+        "status": "FINALIZED",
+        "result": 6,
+        "from": "0xDa84B8886cd0F8A3e1499C642989946b09629589",
+        "to": "0x5382cad86E756c0443c99260E60338e9DA9E0ce1",
+        "votes": {
+          "0x007d6451555Df7765c707284F844137927aE4e5E": "agree",
+          "0x4868b172ddEBC18b5219aaCeAB77ae0Df330c83A": "agree",
+          "0x5847AF34a4e5bA96490f8c883598f68EC9B0B907": "idle",
+          "0x5e84e17266a193077728229751aC8A1dD24be146": "agree",
+          "0x9C182DE7F93AdbE8ee3D62570613eC23c5683cAc": "agree"
+        },
+        "leaders": [
+          {
+            "mode": "leader",
+            "execution_result": "SUCCESS",
+            "vote": null
+          },
+          {
+            "mode": "validator",
+            "execution_result": "SUCCESS",
+            "vote": "agree"
+          }
+        ]
+      }
+    },
+    {
+      "hash": "0xfa90cfc25639abe5193e99e0e19ce96d5a6f61b5ec16a0020f01cee6438609df",
+      "step": 1,
+      "action": 1,
+      "receipt": {
+        "hash": "0xfa90cfc25639abe5193e99e0e19ce96d5a6f61b5ec16a0020f01cee6438609df",
+        "status": "FINALIZED",
+        "result": 6,
+        "from": "0xDa84B8886cd0F8A3e1499C642989946b09629589",
+        "to": "0x5382cad86E756c0443c99260E60338e9DA9E0ce1",
+        "votes": {
+          "0x336458747913FE397be82c4F0926ACeB3ab13618": "idle",
+          "0x4868b172ddEBC18b5219aaCeAB77ae0Df330c83A": "agree",
+          "0x5D9Ee6E9aAF2F0b739314A52dd9Da57cd8866dA8": "agree",
+          "0x9C182DE7F93AdbE8ee3D62570613eC23c5683cAc": "idle",
+          "0xCe0B66448435cA53665C954705Abd753515594Cf": "agree"
+        },
+        "leaders": [
+          {
+            "mode": "leader",
+            "execution_result": "SUCCESS",
+            "vote": null
+          },
+          {
+            "mode": "validator",
+            "execution_result": "SUCCESS",
+            "vote": "agree"
+          }
+        ]
+      }
+    },
+    {
+      "hash": "0x890d2e1966187f5127c78beaac9f2bae97da0353f0f4b6187f2bbafda4d379cd",
+      "step": 2,
+      "action": 0,
+      "receipt": {
+        "hash": "0x890d2e1966187f5127c78beaac9f2bae97da0353f0f4b6187f2bbafda4d379cd",
+        "status": "FINALIZED",
+        "result": 6,
+        "from": "0xDa84B8886cd0F8A3e1499C642989946b09629589",
+        "to": "0x5382cad86E756c0443c99260E60338e9DA9E0ce1",
+        "votes": {
+          "0x007d6451555Df7765c707284F844137927aE4e5E": "agree",
+          "0x378aED3bA912Ce77C3C66155961A7e61C2fE8F3B": "idle",
+          "0x4619C8420D50c9dE477DB2CBb7b4863A041688CB": "agree",
+          "0x5e84e17266a193077728229751aC8A1dD24be146": "agree",
+          "0xB4EE99165ffe987E64B7b72e45a753309c501eef": "idle"
+        },
+        "leaders": [
+          {
+            "mode": "leader",
+            "execution_result": "SUCCESS",
+            "vote": null
+          },
+          {
+            "mode": "validator",
+            "execution_result": "SUCCESS",
+            "vote": "agree"
+          }
+        ]
+      }
+    },
+    {
+      "hash": "0x9d80e68969ea56a735893378e7ffb26ce0e224d89401e4edcf005900b093a6bc",
+      "step": 3,
+      "action": 0,
+      "receipt": {
+        "hash": "0x9d80e68969ea56a735893378e7ffb26ce0e224d89401e4edcf005900b093a6bc",
+        "status": "FINALIZED",
+        "result": 6,
+        "from": "0xDa84B8886cd0F8A3e1499C642989946b09629589",
+        "to": "0x5382cad86E756c0443c99260E60338e9DA9E0ce1",
+        "votes": {
+          "0x045291B293B9D68969c18B6637A8258038cf787A": "idle",
+          "0x336458747913FE397be82c4F0926ACeB3ab13618": "agree",
+          "0x4619C8420D50c9dE477DB2CBb7b4863A041688CB": "agree",
+          "0x5D9Ee6E9aAF2F0b739314A52dd9Da57cd8866dA8": "agree",
+          "0x5e84e17266a193077728229751aC8A1dD24be146": "agree"
+        },
+        "leaders": [
+          {
+            "mode": "leader",
+            "execution_result": "SUCCESS",
+            "vote": null
+          },
+          {
+            "mode": "validator",
+            "execution_result": "SUCCESS",
+            "vote": "agree"
+          }
+        ]
+      }
+    }
+  ],
+  "scope": "Four completed browser actions using one temporary signer. A prior partial rehearsal is also retained in the browser export. All test wallets are controlled by one operator."
+}

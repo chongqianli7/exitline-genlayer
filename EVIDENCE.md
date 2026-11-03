@@ -24,3 +24,20 @@ The trapped model has witness `Forward → Return`, entering Revision with no ex
 [Compact transaction and model index](evidence/summary.json) · [Raw full network receipts](evidence/studionet.json.gz) · [Deployment](public/deployment.json). Receipts use lossless gzip; inspect with `gzip -dc evidence/studionet.json.gz`.
 
 Local checks: 15 mocked-host contract tests and 8 JavaScript tests passed, including exhaustive comparison of 15,625 small graphs against an independent transitive-closure oracle. Calldata tests cover safe BigInt/numeric equality and rejection of string substitutions. Local tests do not prove remote model accuracy. The production build passed.
+
+## Published application
+
+[Production laboratory](https://chongqianli7.github.io/exitline-genlayer/) · [Build and deployment](https://github.com/chongqianli7/exitline-genlayer/actions/runs/41679213649). Dependency installation, 15 contract tests, 8 JavaScript tests, production build and Pages deployment succeeded. The production interface independently read both the published NONBLOCKING model and the TRAPPED model from Stable Studionet and recomputed their certificates.
+
+## Browser rehearsal
+
+The interface completed `Draft → Review → Revision → Review → Done` on the published model. Four signed actions each reached finalized successful execution with intent-bound journey readback. The final journey has `complete: true`, step 4, and action indices `[0,1,0,0]`. This exercises the repaired return path, not just the direct completion route.
+
+[Exported model, journey and compact receipt history](evidence/browser.json) · [Four-step index](evidence/browser-summary.json). These compact outcomes include transaction hashes, exact intents, execution signals and votes; they are not full raw receipts. The full network-case receipts are preserved separately above. The export also retains an additional partial rehearsal. All temporary test signers were controlled by one operator.
+
+| Browser step | Transaction |
+| --- | --- |
+| 1: Forward | [0x9653b57a69…](https://explorer-studio.genlayer.com/tx/0x9653b57a697e4d4283066215ad6183136c10d1ecf556e906726d37be6148c77c) |
+| 2: Return | [0xfa90cfc256…](https://explorer-studio.genlayer.com/tx/0xfa90cfc25639abe5193e99e0e19ce96d5a6f61b5ec16a0020f01cee6438609df) |
+| 3: Forward | [0x890d2e1966…](https://explorer-studio.genlayer.com/tx/0x890d2e1966187f5127c78beaac9f2bae97da0353f0f4b6187f2bbafda4d379cd) |
+| 4: Forward | [0x9d80e68969…](https://explorer-studio.genlayer.com/tx/0x9d80e68969ea56a735893378e7ffb26ce0e224d89401e4edcf005900b093a6bc) |
