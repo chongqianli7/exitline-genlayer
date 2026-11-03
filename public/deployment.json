@@ -1,0 +1,9 @@
+{
+  "network": 61999,
+  "address": "0x5382cad86E756c0443c99260E60338e9DA9E0ce1",
+  "owner": "0x42523981ff26e143bb6966b7cf25afdbf03f7aa7",
+  "id": "editorial-open",
+  "trapId": "editorial-trap",
+  "reviewId": "editorial-unclear",
+  "sourceSha256": "41122a161b0e569dfe71891d5653a4f83a3ba3496b6fc1eb6b844e895270bcd1"
+}

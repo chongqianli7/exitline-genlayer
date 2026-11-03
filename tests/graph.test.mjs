@@ -1,0 +1,10 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {audit,walk} from '../src/graph.js';import {trapMatrix,repairMatrix} from '../src/fixtures.js';import {success,confirmedFailure,escapeHTML,intentJSON} from '../src/util.js';
+test('a reachable closed loop is trapped even when start can finish',()=>{const a=audit(trapMatrix,3);assert.equal(a.status,'TRAPPED');assert.deepEqual(a.trapped,[2]);assert.deepEqual(walk(trapMatrix,a.witness),[0,1,2]);});
+test('all exit certificates replay to terminal',()=>{const r=audit(repairMatrix,3);assert.equal(r.status,'NONBLOCKING');for(const e of r.exits){let s=e.state;for(const a of e.actions)s=repairMatrix[s][a];assert.equal(s,3);}});
+test('unknown cells block even if some clear exit exists',()=>{const m=structuredClone(repairMatrix);m[2][1]=-2;assert.equal(audit(m,3).status,'REVIEW');});
+test('unreachable traps do not invalidate reachable completion',()=>assert.equal(audit([[3,-1],[1,1],[2,2],[-1,-1]],3).status,'NONBLOCKING'));
+test('blocked action is not a self loop',()=>assert.throws(()=>walk(repairMatrix,[1]),/blocked/));
+test('finality without execution success cannot pass',()=>{const t={status:7,result:6,consensus_data:{leader_receipt:{execution_result:'SUCCESS'}}};assert.equal(success(t),true);assert.equal(success({...t,status:'PENDING'}),false);assert.equal(success({...t,consensus_data:{leader_receipt:{execution_result:'ERROR'}}}),false);assert.equal(confirmedFailure({...t,consensus_data:{leader_receipt:{execution_result:'ERROR'}}}),true);});
+test('untrusted workflow text is HTML escaped',()=>assert.equal(escapeHTML('<b>"&'), '&lt;b&gt;&quot;&amp;'));
+
+test('decoded calldata integers bind to numeric intent without accepting string substitutions',()=>{assert.equal(intentJSON([0n,2n]),intentJSON([0,2]));assert.notEqual(intentJSON([0n]),intentJSON(['0']));assert.throws(()=>intentJSON([9007199254740992n]),/Unsafe/);});
