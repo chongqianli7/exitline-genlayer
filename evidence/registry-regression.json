@@ -1,0 +1,404 @@
+{
+  "protocol": "exitline-1",
+  "network": 61999,
+  "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+  "walker": "0x26f98866d8f07d1bea1e0b7daf961716c7535ae4",
+  "address": "0x8a53770267A917dCF2632d1ed2891c65d904Aa43",
+  "sourceSha256": "03aa4b4f54a69ae7858916b8aee6d32842ca8b4c42a2b5b4c714d153a64063d4",
+  "fixture": "Authored editorial + support-ticket workflows. Two zero-balance temporary test signers. Abstract models; no real document or ticket processing.",
+  "records": [
+    {
+      "actions": [
+        "Forward",
+        "Return"
+      ],
+      "analysis": {
+        "can_finish": [
+          0,
+          1,
+          3
+        ],
+        "exits": [
+          {
+            "actions": [
+              0,
+              0
+            ],
+            "state": 0
+          },
+          {
+            "actions": [
+              0
+            ],
+            "state": 1
+          },
+          {
+            "actions": [],
+            "state": 3
+          },
+          {
+            "actions": null,
+            "state": 2
+          }
+        ],
+        "reachable": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "status": "TRAPPED",
+        "trapped": [
+          2
+        ],
+        "witness": [
+          0,
+          1
+        ]
+      },
+      "cells": [
+        {
+          "action": "Forward",
+          "quote": "Draft: Forward sends the document to Review.",
+          "state": "Draft",
+          "target": "Review"
+        },
+        {
+          "action": "Return",
+          "quote": "Return is forbidden in Draft.",
+          "state": "Draft",
+          "target": "BLOCK"
+        },
+        {
+          "action": "Forward",
+          "quote": "Review: Forward completes the process in Done.",
+          "state": "Review",
+          "target": "Done"
+        },
+        {
+          "action": "Return",
+          "quote": "Return sends the document to Revision.",
+          "state": "Review",
+          "target": "Revision"
+        },
+        {
+          "action": "Forward",
+          "quote": "Revision: Forward keeps the document in Revision.",
+          "state": "Revision",
+          "target": "Revision"
+        },
+        {
+          "action": "Return",
+          "quote": "Return also keeps the document in Revision.",
+          "state": "Revision",
+          "target": "Revision"
+        }
+      ],
+      "digest": "3c4efac5e6a18ffdf433f2ade6efa0c816c9bda9f22d02383fa76f30ea5901b6",
+      "id": "editorial-trap",
+      "matrix": [
+        [
+          1,
+          -1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          -1,
+          -1
+        ]
+      ],
+      "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+      "protocol": "exitline-1",
+      "published": false,
+      "rules": "Draft: Forward sends the document to Review. Return is forbidden in Draft. Review: Forward completes the process in Done. Return sends the document to Revision. Revision: Forward keeps the document in Revision. Return also keeps the document in Revision. Done is terminal.",
+      "states": [
+        "Draft",
+        "Review",
+        "Revision",
+        "Done"
+      ],
+      "status": "TRAPPED",
+      "terminal": 3,
+      "title": "A small editorial review loop"
+    },
+    {
+      "actions": [
+        "Forward",
+        "Return"
+      ],
+      "analysis": {
+        "can_finish": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "exits": [
+          {
+            "actions": [
+              0,
+              0
+            ],
+            "state": 0
+          },
+          {
+            "actions": [
+              0
+            ],
+            "state": 1
+          },
+          {
+            "actions": [],
+            "state": 3
+          },
+          {
+            "actions": [
+              0,
+              0
+            ],
+            "state": 2
+          }
+        ],
+        "reachable": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "status": "NONBLOCKING",
+        "trapped": [],
+        "witness": []
+      },
+      "cells": [
+        {
+          "action": "Forward",
+          "quote": "Draft: Forward sends the document to Review.",
+          "state": "Draft",
+          "target": "Review"
+        },
+        {
+          "action": "Return",
+          "quote": "Return is forbidden in Draft.",
+          "state": "Draft",
+          "target": "BLOCK"
+        },
+        {
+          "action": "Forward",
+          "quote": "Review: Forward completes the process in Done.",
+          "state": "Review",
+          "target": "Done"
+        },
+        {
+          "action": "Return",
+          "quote": "Return sends the document to Revision.",
+          "state": "Review",
+          "target": "Revision"
+        },
+        {
+          "action": "Forward",
+          "quote": "Revision: Forward sends the document back to Review.",
+          "state": "Revision",
+          "target": "Review"
+        },
+        {
+          "action": "Return",
+          "quote": "Return keeps the document in Revision.",
+          "state": "Revision",
+          "target": "Revision"
+        }
+      ],
+      "digest": "811effbc9d7ee437f92228f102f8739b416499de732368f925bebaa07db6501b",
+      "id": "editorial-open",
+      "matrix": [
+        [
+          1,
+          -1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          -1,
+          -1
+        ]
+      ],
+      "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+      "protocol": "exitline-1",
+      "published": true,
+      "rules": "Draft: Forward sends the document to Review. Return is forbidden in Draft. Review: Forward completes the process in Done. Return sends the document to Revision. Revision: Forward sends the document back to Review. Return keeps the document in Revision. Done is terminal.",
+      "states": [
+        "Draft",
+        "Review",
+        "Revision",
+        "Done"
+      ],
+      "status": "NONBLOCKING",
+      "terminal": 3,
+      "title": "A small editorial review loop"
+    }
+  ],
+  "transactions": [
+    {
+      "label": "02-trapped-analysis",
+      "hash": "0x99afa1cbb956ca445d39d3a68126cc448a7028a501558438b6744e7199b5f025",
+      "method": "analyze",
+      "args": [
+        "editorial-trap",
+        "A small editorial review loop",
+        "[\"Draft\",\"Review\",\"Revision\",\"Done\"]",
+        "[\"Forward\",\"Return\"]",
+        3,
+        "Draft: Forward sends the document to Review. Return is forbidden in Draft. Review: Forward completes the process in Done. Return sends the document to Revision. Revision: Forward keeps the document in Revision. Return also keeps the document in Revision. Done is terminal."
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0174b4D7494Be33F46B76976f6c9F94004F1b27f": "agree",
+        "0x37CD8552B86b2B662eCfb69C4A1253dBE41EB4C1": "idle",
+        "0x560FBD37a10bC2B96F118071e922c9106c12Ba1d": "agree",
+        "0xe83D7241D0FF0f1f808B9ab3cb06dD2565bDc605": "agree",
+        "0xf1EAD5E5f876eae701eF1881b42861079cd9A287": "idle"
+      }
+    },
+    {
+      "label": "03-trapped-publication-denied",
+      "hash": "0x33bfbc360f17602cc8274cab0370a97923b430c9fb4255ad80074316e83a6e32",
+      "method": "publish",
+      "args": [
+        "editorial-trap",
+        "3c4efac5e6a18ffdf433f2ade6efa0c816c9bda9f22d02383fa76f30ea5901b6"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "ERROR"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "ERROR"
+        }
+      ],
+      "votes": {
+        "0x1Cd67946A11E6410a3DF1b27d35F4a511e93c882": "agree",
+        "0x8ADae333478F9D037c78b0E3E8279DdAAb20a1B3": "agree",
+        "0xc675c2B7E1F066B7c1D2fe54EF7B76C91CdFa5F4": "idle",
+        "0xe83D7241D0FF0f1f808B9ab3cb06dD2565bDc605": "agree",
+        "0xf1EAD5E5f876eae701eF1881b42861079cd9A287": "agree"
+      }
+    },
+    {
+      "label": "04-repaired-analysis",
+      "hash": "0x725379d503b92fa911288600d27eaee0d77a5538c127dc283d5d3001129eebd3",
+      "method": "analyze",
+      "args": [
+        "editorial-open",
+        "A small editorial review loop",
+        "[\"Draft\",\"Review\",\"Revision\",\"Done\"]",
+        "[\"Forward\",\"Return\"]",
+        3,
+        "Draft: Forward sends the document to Review. Return is forbidden in Draft. Review: Forward completes the process in Done. Return sends the document to Revision. Revision: Forward sends the document back to Review. Return keeps the document in Revision. Done is terminal."
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x1Cd67946A11E6410a3DF1b27d35F4a511e93c882": "agree",
+        "0x709a1dDECA594C16AB3864A00Eaa2BB1Cd9b5305": "agree",
+        "0x8644a8D2D08903cAFA1F0fb28E34E0ecA727e9ED": "idle",
+        "0x8ADae333478F9D037c78b0E3E8279DdAAb20a1B3": "agree",
+        "0xc675c2B7E1F066B7c1D2fe54EF7B76C91CdFa5F4": "disagree"
+      }
+    },
+    {
+      "label": "05-publish",
+      "hash": "0xc96cc1f9488a8a12d937ebb97b6a51dee569bad702eea6d43fd0a73f33303468",
+      "method": "publish",
+      "args": [
+        "editorial-open",
+        "811effbc9d7ee437f92228f102f8739b416499de732368f925bebaa07db6501b"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x2bB088e4E6Fd1faBBd23d93F38D01f28a954A49c": "agree",
+        "0x560FBD37a10bC2B96F118071e922c9106c12Ba1d": "idle",
+        "0x722474B013fA39E5aA8785f927dCeB0e3F89815B": "idle",
+        "0x8ADae333478F9D037c78b0E3E8279DdAAb20a1B3": "agree",
+        "0xc675c2B7E1F066B7c1D2fe54EF7B76C91CdFa5F4": "agree"
+      }
+    },
+    {
+      "label": "06-forbidden-action-denied",
+      "hash": "0x486641aa82c29f8b401ab34e3492e9e0698e289503ff60584b1c11e76bba6a92",
+      "method": "advance",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "editorial-open",
+        0,
+        1
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "ERROR"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "ERROR"
+        }
+      ],
+      "votes": {
+        "0x0174b4D7494Be33F46B76976f6c9F94004F1b27f": "idle",
+        "0x37CD8552B86b2B662eCfb69C4A1253dBE41EB4C1": "agree",
+        "0x709a1dDECA594C16AB3864A00Eaa2BB1Cd9b5305": "agree",
+        "0x722474B013fA39E5aA8785f927dCeB0e3F89815B": "agree",
+        "0x8ADae333478F9D037c78b0E3E8279DdAAb20a1B3": "idle"
+      }
+    }
+  ]
+}

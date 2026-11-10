@@ -12,6 +12,16 @@ A document starts in Draft. Forward sends it to Review. Review can send it to Do
 
 Exitline finds the reachable counterexample `Draft → Review → Revision`. Changing Revision / Forward to return to Review repairs the graph. Each reachable state now has an exit certificate that can be replayed without another model call.
 
+## The escalation trap
+
+A support ticket starts in New. Advance moves it to Triage, then to Waiting. Returning from Waiting escalates it to Escalated — and every Escalated action stays in Escalated. The ticket can be worked on forever without ever reaching Resolved.
+
+Exitline finds the reachable counterexample `New → Triage → Waiting → Escalated`. Changing Escalated / Advance to return to Waiting (and Escalated / Return to Triage) repairs the graph. Each reachable state now has an exit certificate that can be replayed without another model call.
+
+## The public library
+
+A published model used to be usable only if you already knew its owner-qualified reference. Registered models are listed on-chain: open the library, pick a model, load it and walk it. Registration is owner-only, published models only, and idempotent — registering twice changes nothing. The library lists the editorial loop and the support ticket loop, both published and NONBLOCKING.
+
 ## Use the laboratory
 
 1. **Practice:** inspect the trapped graph and click **Replay trap witness**. Choose **Way back** and walk the repaired system using Forward and Return. Missing rule demonstrates REVIEW. All three offline matrices are authored fixtures, not live model results.
@@ -20,7 +30,8 @@ Exitline finds the reachable counterexample `Draft → Review → Revision`. Cha
 4. **Interpret with GenLayer:** independent validators must agree on every target, including BLOCK and UNKNOWN. Missing or conditional information is not filled with defaults.
 5. **Publish this exact model:** only the owner may publish, and only a NONBLOCKING model with the expected digest. Source inputs and accepted transitions cannot be edited.
 6. **Walk the model:** each wallet has its own signed rehearsal. The contract enforces allowed actions, the expected step and terminal completion. It reserves enough of the 24-action budget for a shortest exit, so taking another loop cannot consume the last route out.
-7. **Export evidence:** download the current model, journey and up to 30 completed intents with compact receipt outcomes from this browser origin. This is local interaction history, not a global transaction index.
+7. **Register it in the library:** after publication, the owner can register the model. The library lists every registered model with its title, owner, and digest; anyone can load one from the library and walk it with their own wallet.
+8. **Export evidence:** download the current model, journey and up to 30 completed intents with compact receipt outcomes from this browser origin. This is local interaction history, not a global transaction index.
 
 Temporary signer keys live only in page memory and disappear on reload. Never fund these addresses. Public records remain readable. External wallet integrations are supported by the client; recorded browser checks identify the signer type actually exercised.
 

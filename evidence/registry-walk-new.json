@@ -1,0 +1,262 @@
+{
+  "protocol": "exitline-1",
+  "network": 61999,
+  "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+  "walker": "0x26f98866d8f07d1bea1e0b7daf961716c7535ae4",
+  "address": "0x8a53770267A917dCF2632d1ed2891c65d904Aa43",
+  "sourceSha256": "03aa4b4f54a69ae7858916b8aee6d32842ca8b4c42a2b5b4c714d153a64063d4",
+  "fixture": "Authored editorial + support-ticket workflows. Two zero-balance temporary test signers. Abstract models; no real document or ticket processing.",
+  "model": {
+    "actions": [
+      "Advance",
+      "Return"
+    ],
+    "analysis": {
+      "can_finish": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "exits": [
+        {
+          "actions": [
+            0,
+            0,
+            0
+          ],
+          "state": 0
+        },
+        {
+          "actions": [
+            0,
+            0
+          ],
+          "state": 1
+        },
+        {
+          "actions": [
+            0
+          ],
+          "state": 2
+        },
+        {
+          "actions": [],
+          "state": 4
+        },
+        {
+          "actions": [
+            0,
+            0
+          ],
+          "state": 3
+        }
+      ],
+      "reachable": [
+        0,
+        1,
+        2,
+        4,
+        3
+      ],
+      "status": "NONBLOCKING",
+      "trapped": [],
+      "witness": []
+    },
+    "cells": [
+      {
+        "action": "Advance",
+        "quote": "New: Advance sends the ticket to Triage.",
+        "state": "New",
+        "target": "Triage"
+      },
+      {
+        "action": "Return",
+        "quote": "Return is forbidden in New.",
+        "state": "New",
+        "target": "BLOCK"
+      },
+      {
+        "action": "Advance",
+        "quote": "Triage: Advance sends the ticket to Waiting.",
+        "state": "Triage",
+        "target": "Waiting"
+      },
+      {
+        "action": "Return",
+        "quote": "Return sends the ticket back to New.",
+        "state": "Triage",
+        "target": "New"
+      },
+      {
+        "action": "Advance",
+        "quote": "Waiting: Advance resolves the ticket in Resolved.",
+        "state": "Waiting",
+        "target": "Resolved"
+      },
+      {
+        "action": "Return",
+        "quote": "Return escalates the ticket to Escalated.",
+        "state": "Waiting",
+        "target": "Escalated"
+      },
+      {
+        "action": "Advance",
+        "quote": "Escalated: Advance sends the ticket back to Waiting.",
+        "state": "Escalated",
+        "target": "Waiting"
+      },
+      {
+        "action": "Return",
+        "quote": "Return sends the ticket back to Triage.",
+        "state": "Escalated",
+        "target": "Triage"
+      }
+    ],
+    "digest": "f37eaf0da85406b547bffa2c4ca253e63b37681f4c39764609cf4b13370e8fb1",
+    "id": "support-open",
+    "matrix": [
+      [
+        1,
+        -1
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        -1,
+        -1
+      ]
+    ],
+    "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+    "protocol": "exitline-1",
+    "published": true,
+    "rules": "New: Advance sends the ticket to Triage. Return is forbidden in New. Triage: Advance sends the ticket to Waiting. Return sends the ticket back to New. Waiting: Advance resolves the ticket in Resolved. Return escalates the ticket to Escalated. Escalated: Advance sends the ticket back to Waiting. Return sends the ticket back to Triage. Resolved is terminal.",
+    "states": [
+      "New",
+      "Triage",
+      "Waiting",
+      "Escalated",
+      "Resolved"
+    ],
+    "status": "NONBLOCKING",
+    "terminal": 4,
+    "title": "A small support ticket loop"
+  },
+  "journey": {
+    "actions": [
+      0,
+      0,
+      0
+    ],
+    "complete": true,
+    "id": "support-open",
+    "model_digest": "f37eaf0da85406b547bffa2c4ca253e63b37681f4c39764609cf4b13370e8fb1",
+    "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+    "participant": "0x26f98866d8f07d1bea1e0b7daf961716c7535ae4",
+    "state": 4,
+    "step": 3
+  },
+  "transactions": [
+    {
+      "label": "16-walk-support-1",
+      "hash": "0xabe2d0e246f8660900463681e28c7cf2507cc518ee458c1bcefa6e4f4f6d0634",
+      "method": "advance",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "support-open",
+        0,
+        0
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0174b4D7494Be33F46B76976f6c9F94004F1b27f": "agree",
+        "0x711353514049EAc21213834ADd07eF552aF394E6": "agree",
+        "0x722474B013fA39E5aA8785f927dCeB0e3F89815B": "agree",
+        "0x8644a8D2D08903cAFA1F0fb28E34E0ecA727e9ED": "idle",
+        "0xD0eD149D26E76cf49fB588c970E608E44Dd4DAB8": "idle"
+      }
+    },
+    {
+      "label": "17-walk-support-2",
+      "hash": "0x4a41b4d880c8637598b2b2ba2a69fc7c74e2762e5ffa8649f1f04141bb02ed6f",
+      "method": "advance",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "support-open",
+        1,
+        0
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0174b4D7494Be33F46B76976f6c9F94004F1b27f": "agree",
+        "0x1Cd67946A11E6410a3DF1b27d35F4a511e93c882": "idle",
+        "0x2C93031BCCd12836A67f81a249e68abAFEaac2E5": "idle",
+        "0xC65Ec56a1141866951B34D846be8EF433764A48B": "agree",
+        "0xf1EAD5E5f876eae701eF1881b42861079cd9A287": "agree"
+      }
+    },
+    {
+      "label": "18-walk-support-3",
+      "hash": "0x0739effc53e938aad299c1d78a78199cfd16d5439ff1ced3af9c348c446b3f2f",
+      "method": "advance",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "support-open",
+        2,
+        0
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0174b4D7494Be33F46B76976f6c9F94004F1b27f": "idle",
+        "0x37CD8552B86b2B662eCfb69C4A1253dBE41EB4C1": "idle",
+        "0x560FBD37a10bC2B96F118071e922c9106c12Ba1d": "agree",
+        "0x8f1abcAF0fF10678Af925f83b2Bb8b3534c4b94b": "agree",
+        "0xe1626534791FC675ED813Cc2C89C427866526113": "agree"
+      }
+    }
+  ]
+}

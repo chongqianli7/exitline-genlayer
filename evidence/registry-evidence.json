@@ -1,0 +1,1180 @@
+{
+  "protocol": "exitline-1",
+  "network": 61999,
+  "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+  "walker": "0x26f98866d8f07d1bea1e0b7daf961716c7535ae4",
+  "address": "0x8a53770267A917dCF2632d1ed2891c65d904Aa43",
+  "sourceSha256": "03aa4b4f54a69ae7858916b8aee6d32842ca8b4c42a2b5b4c714d153a64063d4",
+  "fixture": "Authored editorial + support-ticket workflows. Two zero-balance temporary test signers. Abstract models; no real document or ticket processing.",
+  "records": [
+    {
+      "actions": [
+        "Forward",
+        "Return"
+      ],
+      "analysis": {
+        "can_finish": [
+          0,
+          1,
+          3
+        ],
+        "exits": [
+          {
+            "actions": [
+              0,
+              0
+            ],
+            "state": 0
+          },
+          {
+            "actions": [
+              0
+            ],
+            "state": 1
+          },
+          {
+            "actions": [],
+            "state": 3
+          },
+          {
+            "actions": null,
+            "state": 2
+          }
+        ],
+        "reachable": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "status": "TRAPPED",
+        "trapped": [
+          2
+        ],
+        "witness": [
+          0,
+          1
+        ]
+      },
+      "cells": [
+        {
+          "action": "Forward",
+          "quote": "Draft: Forward sends the document to Review.",
+          "state": "Draft",
+          "target": "Review"
+        },
+        {
+          "action": "Return",
+          "quote": "Return is forbidden in Draft.",
+          "state": "Draft",
+          "target": "BLOCK"
+        },
+        {
+          "action": "Forward",
+          "quote": "Review: Forward completes the process in Done.",
+          "state": "Review",
+          "target": "Done"
+        },
+        {
+          "action": "Return",
+          "quote": "Return sends the document to Revision.",
+          "state": "Review",
+          "target": "Revision"
+        },
+        {
+          "action": "Forward",
+          "quote": "Revision: Forward keeps the document in Revision.",
+          "state": "Revision",
+          "target": "Revision"
+        },
+        {
+          "action": "Return",
+          "quote": "Return also keeps the document in Revision.",
+          "state": "Revision",
+          "target": "Revision"
+        }
+      ],
+      "digest": "3c4efac5e6a18ffdf433f2ade6efa0c816c9bda9f22d02383fa76f30ea5901b6",
+      "id": "editorial-trap",
+      "matrix": [
+        [
+          1,
+          -1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          -1,
+          -1
+        ]
+      ],
+      "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+      "protocol": "exitline-1",
+      "published": false,
+      "rules": "Draft: Forward sends the document to Review. Return is forbidden in Draft. Review: Forward completes the process in Done. Return sends the document to Revision. Revision: Forward keeps the document in Revision. Return also keeps the document in Revision. Done is terminal.",
+      "states": [
+        "Draft",
+        "Review",
+        "Revision",
+        "Done"
+      ],
+      "status": "TRAPPED",
+      "terminal": 3,
+      "title": "A small editorial review loop"
+    },
+    {
+      "actions": [
+        "Forward",
+        "Return"
+      ],
+      "analysis": {
+        "can_finish": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "exits": [
+          {
+            "actions": [
+              0,
+              0
+            ],
+            "state": 0
+          },
+          {
+            "actions": [
+              0
+            ],
+            "state": 1
+          },
+          {
+            "actions": [],
+            "state": 3
+          },
+          {
+            "actions": [
+              0,
+              0
+            ],
+            "state": 2
+          }
+        ],
+        "reachable": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "status": "NONBLOCKING",
+        "trapped": [],
+        "witness": []
+      },
+      "cells": [
+        {
+          "action": "Forward",
+          "quote": "Draft: Forward sends the document to Review.",
+          "state": "Draft",
+          "target": "Review"
+        },
+        {
+          "action": "Return",
+          "quote": "Return is forbidden in Draft.",
+          "state": "Draft",
+          "target": "BLOCK"
+        },
+        {
+          "action": "Forward",
+          "quote": "Review: Forward completes the process in Done.",
+          "state": "Review",
+          "target": "Done"
+        },
+        {
+          "action": "Return",
+          "quote": "Return sends the document to Revision.",
+          "state": "Review",
+          "target": "Revision"
+        },
+        {
+          "action": "Forward",
+          "quote": "Revision: Forward sends the document back to Review.",
+          "state": "Revision",
+          "target": "Review"
+        },
+        {
+          "action": "Return",
+          "quote": "Return keeps the document in Revision.",
+          "state": "Revision",
+          "target": "Revision"
+        }
+      ],
+      "digest": "811effbc9d7ee437f92228f102f8739b416499de732368f925bebaa07db6501b",
+      "id": "editorial-open",
+      "matrix": [
+        [
+          1,
+          -1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          -1,
+          -1
+        ]
+      ],
+      "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+      "protocol": "exitline-1",
+      "published": true,
+      "rules": "Draft: Forward sends the document to Review. Return is forbidden in Draft. Review: Forward completes the process in Done. Return sends the document to Revision. Revision: Forward sends the document back to Review. Return keeps the document in Revision. Done is terminal.",
+      "states": [
+        "Draft",
+        "Review",
+        "Revision",
+        "Done"
+      ],
+      "status": "NONBLOCKING",
+      "terminal": 3,
+      "title": "A small editorial review loop"
+    },
+    {
+      "actions": [
+        "Advance",
+        "Return"
+      ],
+      "analysis": {
+        "can_finish": [
+          0,
+          1,
+          2,
+          4
+        ],
+        "exits": [
+          {
+            "actions": [
+              0,
+              0,
+              0
+            ],
+            "state": 0
+          },
+          {
+            "actions": [
+              0,
+              0
+            ],
+            "state": 1
+          },
+          {
+            "actions": [
+              0
+            ],
+            "state": 2
+          },
+          {
+            "actions": [],
+            "state": 4
+          },
+          {
+            "actions": null,
+            "state": 3
+          }
+        ],
+        "reachable": [
+          0,
+          1,
+          2,
+          4,
+          3
+        ],
+        "status": "TRAPPED",
+        "trapped": [
+          3
+        ],
+        "witness": [
+          0,
+          0,
+          1
+        ]
+      },
+      "cells": [
+        {
+          "action": "Advance",
+          "quote": "New: Advance sends the ticket to Triage. Return is forbidden in New.",
+          "state": "New",
+          "target": "Triage"
+        },
+        {
+          "action": "Return",
+          "quote": "New: Advance sends the ticket to Triage. Return is forbidden in New.",
+          "state": "New",
+          "target": "BLOCK"
+        },
+        {
+          "action": "Advance",
+          "quote": "Triage: Advance sends the ticket to Waiting. Return sends the ticket back to New.",
+          "state": "Triage",
+          "target": "Waiting"
+        },
+        {
+          "action": "Return",
+          "quote": "Triage: Advance sends the ticket to Waiting. Return sends the ticket back to New.",
+          "state": "Triage",
+          "target": "New"
+        },
+        {
+          "action": "Advance",
+          "quote": "Waiting: Advance resolves the ticket in Resolved. Return escalates the ticket to Escalated.",
+          "state": "Waiting",
+          "target": "Resolved"
+        },
+        {
+          "action": "Return",
+          "quote": "Waiting: Advance resolves the ticket in Resolved. Return escalates the ticket to Escalated.",
+          "state": "Waiting",
+          "target": "Escalated"
+        },
+        {
+          "action": "Advance",
+          "quote": "Escalated: Advance keeps the ticket in Escalated. Return also keeps the ticket in Escalated.",
+          "state": "Escalated",
+          "target": "Escalated"
+        },
+        {
+          "action": "Return",
+          "quote": "Escalated: Advance keeps the ticket in Escalated. Return also keeps the ticket in Escalated.",
+          "state": "Escalated",
+          "target": "Escalated"
+        }
+      ],
+      "digest": "4adaac57b10a0b1dc21d8d7b0abb2d0037259ca343015dda51a8242590b23424",
+      "id": "support-trap",
+      "matrix": [
+        [
+          1,
+          -1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          -1,
+          -1
+        ]
+      ],
+      "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+      "protocol": "exitline-1",
+      "published": false,
+      "rules": "New: Advance sends the ticket to Triage. Return is forbidden in New. Triage: Advance sends the ticket to Waiting. Return sends the ticket back to New. Waiting: Advance resolves the ticket in Resolved. Return escalates the ticket to Escalated. Escalated: Advance keeps the ticket in Escalated. Return also keeps the ticket in Escalated. Resolved is terminal.",
+      "states": [
+        "New",
+        "Triage",
+        "Waiting",
+        "Escalated",
+        "Resolved"
+      ],
+      "status": "TRAPPED",
+      "terminal": 4,
+      "title": "A small support ticket loop"
+    },
+    {
+      "actions": [
+        "Advance",
+        "Return"
+      ],
+      "analysis": {
+        "can_finish": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "exits": [
+          {
+            "actions": [
+              0,
+              0,
+              0
+            ],
+            "state": 0
+          },
+          {
+            "actions": [
+              0,
+              0
+            ],
+            "state": 1
+          },
+          {
+            "actions": [
+              0
+            ],
+            "state": 2
+          },
+          {
+            "actions": [],
+            "state": 4
+          },
+          {
+            "actions": [
+              0,
+              0
+            ],
+            "state": 3
+          }
+        ],
+        "reachable": [
+          0,
+          1,
+          2,
+          4,
+          3
+        ],
+        "status": "NONBLOCKING",
+        "trapped": [],
+        "witness": []
+      },
+      "cells": [
+        {
+          "action": "Advance",
+          "quote": "New: Advance sends the ticket to Triage.",
+          "state": "New",
+          "target": "Triage"
+        },
+        {
+          "action": "Return",
+          "quote": "Return is forbidden in New.",
+          "state": "New",
+          "target": "BLOCK"
+        },
+        {
+          "action": "Advance",
+          "quote": "Triage: Advance sends the ticket to Waiting.",
+          "state": "Triage",
+          "target": "Waiting"
+        },
+        {
+          "action": "Return",
+          "quote": "Return sends the ticket back to New.",
+          "state": "Triage",
+          "target": "New"
+        },
+        {
+          "action": "Advance",
+          "quote": "Waiting: Advance resolves the ticket in Resolved.",
+          "state": "Waiting",
+          "target": "Resolved"
+        },
+        {
+          "action": "Return",
+          "quote": "Return escalates the ticket to Escalated.",
+          "state": "Waiting",
+          "target": "Escalated"
+        },
+        {
+          "action": "Advance",
+          "quote": "Escalated: Advance sends the ticket back to Waiting.",
+          "state": "Escalated",
+          "target": "Waiting"
+        },
+        {
+          "action": "Return",
+          "quote": "Return sends the ticket back to Triage.",
+          "state": "Escalated",
+          "target": "Triage"
+        }
+      ],
+      "digest": "f37eaf0da85406b547bffa2c4ca253e63b37681f4c39764609cf4b13370e8fb1",
+      "id": "support-open",
+      "matrix": [
+        [
+          1,
+          -1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          -1,
+          -1
+        ]
+      ],
+      "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+      "protocol": "exitline-1",
+      "published": true,
+      "rules": "New: Advance sends the ticket to Triage. Return is forbidden in New. Triage: Advance sends the ticket to Waiting. Return sends the ticket back to New. Waiting: Advance resolves the ticket in Resolved. Return escalates the ticket to Escalated. Escalated: Advance sends the ticket back to Waiting. Return sends the ticket back to Triage. Resolved is terminal.",
+      "states": [
+        "New",
+        "Triage",
+        "Waiting",
+        "Escalated",
+        "Resolved"
+      ],
+      "status": "NONBLOCKING",
+      "terminal": 4,
+      "title": "A small support ticket loop"
+    }
+  ],
+  "registry": [
+    {
+      "digest": "811effbc9d7ee437f92228f102f8739b416499de732368f925bebaa07db6501b",
+      "id": "editorial-open",
+      "index": 0,
+      "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+      "title": "A small editorial review loop"
+    },
+    {
+      "digest": "f37eaf0da85406b547bffa2c4ca253e63b37681f4c39764609cf4b13370e8fb1",
+      "id": "support-open",
+      "index": 1,
+      "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+      "title": "A small support ticket loop"
+    }
+  ],
+  "journeys": {
+    "support-open": {
+      "actions": [
+        0,
+        0,
+        0
+      ],
+      "complete": true,
+      "id": "support-open",
+      "model_digest": "f37eaf0da85406b547bffa2c4ca253e63b37681f4c39764609cf4b13370e8fb1",
+      "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+      "participant": "0x26f98866d8f07d1bea1e0b7daf961716c7535ae4",
+      "state": 4,
+      "step": 3
+    },
+    "editorial-open": {
+      "actions": [
+        0,
+        0
+      ],
+      "complete": true,
+      "id": "editorial-open",
+      "model_digest": "811effbc9d7ee437f92228f102f8739b416499de732368f925bebaa07db6501b",
+      "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+      "participant": "0x26f98866d8f07d1bea1e0b7daf961716c7535ae4",
+      "state": 3,
+      "step": 2
+    }
+  },
+  "transactions": [
+    {
+      "label": "01-deploy",
+      "hash": "0x54032642df12e1a6929b4d90dfa3729847683f80926b9a8bc87db9b48189fa5a",
+      "method": "deploy",
+      "args": [],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0174b4D7494Be33F46B76976f6c9F94004F1b27f": "agree",
+        "0x2C93031BCCd12836A67f81a249e68abAFEaac2E5": "agree",
+        "0x2bB088e4E6Fd1faBBd23d93F38D01f28a954A49c": "idle",
+        "0x711353514049EAc21213834ADd07eF552aF394E6": "agree",
+        "0x8f1abcAF0fF10678Af925f83b2Bb8b3534c4b94b": "idle"
+      }
+    },
+    {
+      "label": "02-trapped-analysis",
+      "hash": "0x99afa1cbb956ca445d39d3a68126cc448a7028a501558438b6744e7199b5f025",
+      "method": "analyze",
+      "args": [
+        "editorial-trap",
+        "A small editorial review loop",
+        "[\"Draft\",\"Review\",\"Revision\",\"Done\"]",
+        "[\"Forward\",\"Return\"]",
+        3,
+        "Draft: Forward sends the document to Review. Return is forbidden in Draft. Review: Forward completes the process in Done. Return sends the document to Revision. Revision: Forward keeps the document in Revision. Return also keeps the document in Revision. Done is terminal."
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0174b4D7494Be33F46B76976f6c9F94004F1b27f": "agree",
+        "0x37CD8552B86b2B662eCfb69C4A1253dBE41EB4C1": "idle",
+        "0x560FBD37a10bC2B96F118071e922c9106c12Ba1d": "agree",
+        "0xe83D7241D0FF0f1f808B9ab3cb06dD2565bDc605": "agree",
+        "0xf1EAD5E5f876eae701eF1881b42861079cd9A287": "idle"
+      }
+    },
+    {
+      "label": "03-trapped-publication-denied",
+      "hash": "0x33bfbc360f17602cc8274cab0370a97923b430c9fb4255ad80074316e83a6e32",
+      "method": "publish",
+      "args": [
+        "editorial-trap",
+        "3c4efac5e6a18ffdf433f2ade6efa0c816c9bda9f22d02383fa76f30ea5901b6"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "ERROR"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "ERROR"
+        }
+      ],
+      "votes": {
+        "0x1Cd67946A11E6410a3DF1b27d35F4a511e93c882": "agree",
+        "0x8ADae333478F9D037c78b0E3E8279DdAAb20a1B3": "agree",
+        "0xc675c2B7E1F066B7c1D2fe54EF7B76C91CdFa5F4": "idle",
+        "0xe83D7241D0FF0f1f808B9ab3cb06dD2565bDc605": "agree",
+        "0xf1EAD5E5f876eae701eF1881b42861079cd9A287": "agree"
+      }
+    },
+    {
+      "label": "04-repaired-analysis",
+      "hash": "0x725379d503b92fa911288600d27eaee0d77a5538c127dc283d5d3001129eebd3",
+      "method": "analyze",
+      "args": [
+        "editorial-open",
+        "A small editorial review loop",
+        "[\"Draft\",\"Review\",\"Revision\",\"Done\"]",
+        "[\"Forward\",\"Return\"]",
+        3,
+        "Draft: Forward sends the document to Review. Return is forbidden in Draft. Review: Forward completes the process in Done. Return sends the document to Revision. Revision: Forward sends the document back to Review. Return keeps the document in Revision. Done is terminal."
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x1Cd67946A11E6410a3DF1b27d35F4a511e93c882": "agree",
+        "0x709a1dDECA594C16AB3864A00Eaa2BB1Cd9b5305": "agree",
+        "0x8644a8D2D08903cAFA1F0fb28E34E0ecA727e9ED": "idle",
+        "0x8ADae333478F9D037c78b0E3E8279DdAAb20a1B3": "agree",
+        "0xc675c2B7E1F066B7c1D2fe54EF7B76C91CdFa5F4": "disagree"
+      }
+    },
+    {
+      "label": "05-publish",
+      "hash": "0xc96cc1f9488a8a12d937ebb97b6a51dee569bad702eea6d43fd0a73f33303468",
+      "method": "publish",
+      "args": [
+        "editorial-open",
+        "811effbc9d7ee437f92228f102f8739b416499de732368f925bebaa07db6501b"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x2bB088e4E6Fd1faBBd23d93F38D01f28a954A49c": "agree",
+        "0x560FBD37a10bC2B96F118071e922c9106c12Ba1d": "idle",
+        "0x722474B013fA39E5aA8785f927dCeB0e3F89815B": "idle",
+        "0x8ADae333478F9D037c78b0E3E8279DdAAb20a1B3": "agree",
+        "0xc675c2B7E1F066B7c1D2fe54EF7B76C91CdFa5F4": "agree"
+      }
+    },
+    {
+      "label": "06-forbidden-action-denied",
+      "hash": "0x486641aa82c29f8b401ab34e3492e9e0698e289503ff60584b1c11e76bba6a92",
+      "method": "advance",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "editorial-open",
+        0,
+        1
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "ERROR"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "ERROR"
+        }
+      ],
+      "votes": {
+        "0x0174b4D7494Be33F46B76976f6c9F94004F1b27f": "idle",
+        "0x37CD8552B86b2B662eCfb69C4A1253dBE41EB4C1": "agree",
+        "0x709a1dDECA594C16AB3864A00Eaa2BB1Cd9b5305": "agree",
+        "0x722474B013fA39E5aA8785f927dCeB0e3F89815B": "agree",
+        "0x8ADae333478F9D037c78b0E3E8279DdAAb20a1B3": "idle"
+      }
+    },
+    {
+      "label": "07-support-trap-analysis",
+      "hash": "0xa5985a6a520895df8b348c570218b3f7efb5d09be0cded946a576c4627b814ab",
+      "method": "analyze",
+      "args": [
+        "support-trap",
+        "A small support ticket loop",
+        "[\"New\",\"Triage\",\"Waiting\",\"Escalated\",\"Resolved\"]",
+        "[\"Advance\",\"Return\"]",
+        4,
+        "New: Advance sends the ticket to Triage. Return is forbidden in New. Triage: Advance sends the ticket to Waiting. Return sends the ticket back to New. Waiting: Advance resolves the ticket in Resolved. Return escalates the ticket to Escalated. Escalated: Advance keeps the ticket in Escalated. Return also keeps the ticket in Escalated. Resolved is terminal."
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x2C93031BCCd12836A67f81a249e68abAFEaac2E5": "idle",
+        "0x37CD8552B86b2B662eCfb69C4A1253dBE41EB4C1": "agree",
+        "0x560FBD37a10bC2B96F118071e922c9106c12Ba1d": "agree",
+        "0x711353514049EAc21213834ADd07eF552aF394E6": "idle",
+        "0x8ADae333478F9D037c78b0E3E8279DdAAb20a1B3": "agree"
+      }
+    },
+    {
+      "label": "08-support-trap-publication-denied",
+      "hash": "0xf5e824054d439d64e1280549d7e834a5922b4da791f67f2c62426d374772176b",
+      "method": "publish",
+      "args": [
+        "support-trap",
+        "4adaac57b10a0b1dc21d8d7b0abb2d0037259ca343015dda51a8242590b23424"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "ERROR"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "ERROR"
+        }
+      ],
+      "votes": {
+        "0x0cf3809a31B0c7E0742d126451aDE1977e3748D2": "agree",
+        "0x711353514049EAc21213834ADd07eF552aF394E6": "idle",
+        "0x8f1abcAF0fF10678Af925f83b2Bb8b3534c4b94b": "idle",
+        "0xD0eD149D26E76cf49fB588c970E608E44Dd4DAB8": "agree",
+        "0xe83D7241D0FF0f1f808B9ab3cb06dD2565bDc605": "agree"
+      }
+    },
+    {
+      "label": "09-support-analysis",
+      "hash": "0x5e9d2f5c36f4324bd7d9429de400d6aaa0d822fb4613f2061d3c5b7a81823d58",
+      "method": "analyze",
+      "args": [
+        "support-open",
+        "A small support ticket loop",
+        "[\"New\",\"Triage\",\"Waiting\",\"Escalated\",\"Resolved\"]",
+        "[\"Advance\",\"Return\"]",
+        4,
+        "New: Advance sends the ticket to Triage. Return is forbidden in New. Triage: Advance sends the ticket to Waiting. Return sends the ticket back to New. Waiting: Advance resolves the ticket in Resolved. Return escalates the ticket to Escalated. Escalated: Advance sends the ticket back to Waiting. Return sends the ticket back to Triage. Resolved is terminal."
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0cf3809a31B0c7E0742d126451aDE1977e3748D2": "agree",
+        "0x711353514049EAc21213834ADd07eF552aF394E6": "idle",
+        "0x8ADae333478F9D037c78b0E3E8279DdAAb20a1B3": "idle",
+        "0xD0eD149D26E76cf49fB588c970E608E44Dd4DAB8": "agree",
+        "0xc675c2B7E1F066B7c1D2fe54EF7B76C91CdFa5F4": "agree"
+      }
+    },
+    {
+      "label": "10-support-publish",
+      "hash": "0x4a774b0649b1f5beaa8290ae20fb2da29d0d6a509bf0866aba329a0c6f52e0d9",
+      "method": "publish",
+      "args": [
+        "support-open",
+        "f37eaf0da85406b547bffa2c4ca253e63b37681f4c39764609cf4b13370e8fb1"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0cf3809a31B0c7E0742d126451aDE1977e3748D2": "agree",
+        "0x2C93031BCCd12836A67f81a249e68abAFEaac2E5": "agree",
+        "0x2bB088e4E6Fd1faBBd23d93F38D01f28a954A49c": "agree",
+        "0x560FBD37a10bC2B96F118071e922c9106c12Ba1d": "idle",
+        "0x709a1dDECA594C16AB3864A00Eaa2BB1Cd9b5305": "idle"
+      }
+    },
+    {
+      "label": "11-register-editorial",
+      "hash": "0xf551527f3c4472116b7379d37e55c5adb27ca76912ae68bb27c9a69cee3035f7",
+      "method": "register_model",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "editorial-open"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0cf3809a31B0c7E0742d126451aDE1977e3748D2": "agree",
+        "0x2C93031BCCd12836A67f81a249e68abAFEaac2E5": "agree",
+        "0x2bB088e4E6Fd1faBBd23d93F38D01f28a954A49c": "agree",
+        "0x709a1dDECA594C16AB3864A00Eaa2BB1Cd9b5305": "idle",
+        "0x711353514049EAc21213834ADd07eF552aF394E6": "idle"
+      }
+    },
+    {
+      "label": "12-register-support",
+      "hash": "0x43e3fd49cee1d8eb63bbe7df9838e237f9358402fa626cda3742003594c2dd53",
+      "method": "register_model",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "support-open"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x560FBD37a10bC2B96F118071e922c9106c12Ba1d": "agree",
+        "0x711353514049EAc21213834ADd07eF552aF394E6": "agree",
+        "0x8f1abcAF0fF10678Af925f83b2Bb8b3534c4b94b": "idle",
+        "0xC65Ec56a1141866951B34D846be8EF433764A48B": "agree",
+        "0xf1EAD5E5f876eae701eF1881b42861079cd9A287": "agree"
+      }
+    },
+    {
+      "label": "13-register-unpublished-denied",
+      "hash": "0x1b1daa2244e15ae4516080d0f2d6cde07c158fcea43423dcc28c2a5ace3e70de",
+      "method": "register_model",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "support-trap"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "ERROR"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "ERROR"
+        }
+      ],
+      "votes": {
+        "0x1Cd67946A11E6410a3DF1b27d35F4a511e93c882": "agree",
+        "0x2bB088e4E6Fd1faBBd23d93F38D01f28a954A49c": "agree",
+        "0x8644a8D2D08903cAFA1F0fb28E34E0ecA727e9ED": "agree",
+        "0xD0eD149D26E76cf49fB588c970E608E44Dd4DAB8": "idle",
+        "0xf1EAD5E5f876eae701eF1881b42861079cd9A287": "idle"
+      }
+    },
+    {
+      "label": "14-register-nonowner-denied",
+      "hash": "0x54d264d2d8dd3f78f67fe83728eadbe4dc927f2b8cdac821597bf6a2ba0adc2b",
+      "method": "register_model",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "editorial-open"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "ERROR"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "ERROR"
+        }
+      ],
+      "votes": {
+        "0x2C93031BCCd12836A67f81a249e68abAFEaac2E5": "agree",
+        "0xC65Ec56a1141866951B34D846be8EF433764A48B": "agree",
+        "0xc675c2B7E1F066B7c1D2fe54EF7B76C91CdFa5F4": "agree",
+        "0xe1626534791FC675ED813Cc2C89C427866526113": "agree",
+        "0xe83D7241D0FF0f1f808B9ab3cb06dD2565bDc605": "idle"
+      }
+    },
+    {
+      "label": "15-register-again-noop",
+      "hash": "0xb49c0e808bb277b0006c1e849c3dcd6eb2d41c4588d2fcaeec08ac95dbcb344d",
+      "method": "register_model",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "editorial-open"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0174b4D7494Be33F46B76976f6c9F94004F1b27f": "agree",
+        "0x29300188B54F5BFEE91542595611603b4B201008": "agree",
+        "0x37CD8552B86b2B662eCfb69C4A1253dBE41EB4C1": "idle",
+        "0x560FBD37a10bC2B96F118071e922c9106c12Ba1d": "idle",
+        "0xf1EAD5E5f876eae701eF1881b42861079cd9A287": "agree"
+      }
+    },
+    {
+      "label": "16-walk-support-1",
+      "hash": "0xabe2d0e246f8660900463681e28c7cf2507cc518ee458c1bcefa6e4f4f6d0634",
+      "method": "advance",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "support-open",
+        0,
+        0
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0174b4D7494Be33F46B76976f6c9F94004F1b27f": "agree",
+        "0x711353514049EAc21213834ADd07eF552aF394E6": "agree",
+        "0x722474B013fA39E5aA8785f927dCeB0e3F89815B": "agree",
+        "0x8644a8D2D08903cAFA1F0fb28E34E0ecA727e9ED": "idle",
+        "0xD0eD149D26E76cf49fB588c970E608E44Dd4DAB8": "idle"
+      }
+    },
+    {
+      "label": "17-walk-support-2",
+      "hash": "0x4a41b4d880c8637598b2b2ba2a69fc7c74e2762e5ffa8649f1f04141bb02ed6f",
+      "method": "advance",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "support-open",
+        1,
+        0
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0174b4D7494Be33F46B76976f6c9F94004F1b27f": "agree",
+        "0x1Cd67946A11E6410a3DF1b27d35F4a511e93c882": "idle",
+        "0x2C93031BCCd12836A67f81a249e68abAFEaac2E5": "idle",
+        "0xC65Ec56a1141866951B34D846be8EF433764A48B": "agree",
+        "0xf1EAD5E5f876eae701eF1881b42861079cd9A287": "agree"
+      }
+    },
+    {
+      "label": "18-walk-support-3",
+      "hash": "0x0739effc53e938aad299c1d78a78199cfd16d5439ff1ced3af9c348c446b3f2f",
+      "method": "advance",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "support-open",
+        2,
+        0
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0174b4D7494Be33F46B76976f6c9F94004F1b27f": "idle",
+        "0x37CD8552B86b2B662eCfb69C4A1253dBE41EB4C1": "idle",
+        "0x560FBD37a10bC2B96F118071e922c9106c12Ba1d": "agree",
+        "0x8f1abcAF0fF10678Af925f83b2Bb8b3534c4b94b": "agree",
+        "0xe1626534791FC675ED813Cc2C89C427866526113": "agree"
+      }
+    },
+    {
+      "label": "19-walk-editorial-1",
+      "hash": "0xf6dc308abb9e2e23394cbc37577f464ba873b3601725c35771a3f09bc60fe531",
+      "method": "advance",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "editorial-open",
+        0,
+        0
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x1Cd67946A11E6410a3DF1b27d35F4a511e93c882": "idle",
+        "0x709a1dDECA594C16AB3864A00Eaa2BB1Cd9b5305": "idle",
+        "0x8f1abcAF0fF10678Af925f83b2Bb8b3534c4b94b": "agree",
+        "0xD0eD149D26E76cf49fB588c970E608E44Dd4DAB8": "agree",
+        "0xf1EAD5E5f876eae701eF1881b42861079cd9A287": "agree"
+      }
+    },
+    {
+      "label": "20-walk-editorial-2",
+      "hash": "0xf7c5398c9577f3a834023a5bb77b13f14bd68f04cceccb01edf80d51dde60409",
+      "method": "advance",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "editorial-open",
+        1,
+        0
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x2C93031BCCd12836A67f81a249e68abAFEaac2E5": "agree",
+        "0x2bB088e4E6Fd1faBBd23d93F38D01f28a954A49c": "agree",
+        "0x37CD8552B86b2B662eCfb69C4A1253dBE41EB4C1": "idle",
+        "0x560FBD37a10bC2B96F118071e922c9106c12Ba1d": "agree",
+        "0xC65Ec56a1141866951B34D846be8EF433764A48B": "idle"
+      }
+    }
+  ]
+}

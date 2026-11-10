@@ -1,0 +1,111 @@
+{
+  "protocol": "exitline-1",
+  "network": 61999,
+  "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+  "walker": "0x26f98866d8f07d1bea1e0b7daf961716c7535ae4",
+  "address": "0x8a53770267A917dCF2632d1ed2891c65d904Aa43",
+  "sourceSha256": "03aa4b4f54a69ae7858916b8aee6d32842ca8b4c42a2b5b4c714d153a64063d4",
+  "fixture": "Authored editorial + support-ticket workflows. Two zero-balance temporary test signers. Abstract models; no real document or ticket processing.",
+  "registry": [
+    {
+      "digest": "811effbc9d7ee437f92228f102f8739b416499de732368f925bebaa07db6501b",
+      "id": "editorial-open",
+      "index": 0,
+      "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+      "title": "A small editorial review loop"
+    },
+    {
+      "digest": "f37eaf0da85406b547bffa2c4ca253e63b37681f4c39764609cf4b13370e8fb1",
+      "id": "support-open",
+      "index": 1,
+      "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+      "title": "A small support ticket loop"
+    }
+  ],
+  "transactions": [
+    {
+      "label": "13-register-unpublished-denied",
+      "hash": "0x1b1daa2244e15ae4516080d0f2d6cde07c158fcea43423dcc28c2a5ace3e70de",
+      "method": "register_model",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "support-trap"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "ERROR"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "ERROR"
+        }
+      ],
+      "votes": {
+        "0x1Cd67946A11E6410a3DF1b27d35F4a511e93c882": "agree",
+        "0x2bB088e4E6Fd1faBBd23d93F38D01f28a954A49c": "agree",
+        "0x8644a8D2D08903cAFA1F0fb28E34E0ecA727e9ED": "agree",
+        "0xD0eD149D26E76cf49fB588c970E608E44Dd4DAB8": "idle",
+        "0xf1EAD5E5f876eae701eF1881b42861079cd9A287": "idle"
+      }
+    },
+    {
+      "label": "14-register-nonowner-denied",
+      "hash": "0x54d264d2d8dd3f78f67fe83728eadbe4dc927f2b8cdac821597bf6a2ba0adc2b",
+      "method": "register_model",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "editorial-open"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "ERROR"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "ERROR"
+        }
+      ],
+      "votes": {
+        "0x2C93031BCCd12836A67f81a249e68abAFEaac2E5": "agree",
+        "0xC65Ec56a1141866951B34D846be8EF433764A48B": "agree",
+        "0xc675c2B7E1F066B7c1D2fe54EF7B76C91CdFa5F4": "agree",
+        "0xe1626534791FC675ED813Cc2C89C427866526113": "agree",
+        "0xe83D7241D0FF0f1f808B9ab3cb06dD2565bDc605": "idle"
+      }
+    },
+    {
+      "label": "15-register-again-noop",
+      "hash": "0xb49c0e808bb277b0006c1e849c3dcd6eb2d41c4588d2fcaeec08ac95dbcb344d",
+      "method": "register_model",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "editorial-open"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0174b4D7494Be33F46B76976f6c9F94004F1b27f": "agree",
+        "0x29300188B54F5BFEE91542595611603b4B201008": "agree",
+        "0x37CD8552B86b2B662eCfb69C4A1253dBE41EB4C1": "idle",
+        "0x560FBD37a10bC2B96F118071e922c9106c12Ba1d": "idle",
+        "0xf1EAD5E5f876eae701eF1881b42861079cd9A287": "agree"
+      }
+    }
+  ]
+}

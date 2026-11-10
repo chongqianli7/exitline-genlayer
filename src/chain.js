@@ -14,4 +14,6 @@ export async function read(address,owner,id){if(!addressOK(owner)||!id)throw Err
 export async function receipt(p){const tx=await reader.request({method:'eth_getTransactionByHash',params:[p.hash]});if(!tx)return null;const b64=typeof tx.data?.calldata==='string'?tx.data.calldata:tx.data?.calldata?.base64;if((tx.from_address||'').toLowerCase()!==p.from||(tx.to_address||'').toLowerCase()!==p.address.toLowerCase()||!b64)throw Error('Receipt identity unavailable or mismatched.');const call=abi.calldata.decode(Uint8Array.from(atob(b64),c=>c.charCodeAt(0)));if(!(call instanceof Map)||call.get('method')!==p.method||intentJSON(call.get('args')||[])!==intentJSON(p.args))throw Error('Receipt intent mismatch.');return tx;}
 export {success,confirmedFailure};
 
+export async function registry(address){const raw=await reader.readContract({address,functionName:'list_registry',args:[],transactionHashVariant:'latest-final'});return JSON.parse(raw);}
+
 export async function journey(address,owner,id,participant){if(!addressOK(participant))return null;const raw=await reader.readContract({address,functionName:'get_journey',args:[owner,id,participant],transactionHashVariant:'latest-final'});return raw?JSON.parse(raw):null;}

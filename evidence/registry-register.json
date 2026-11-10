@@ -1,0 +1,83 @@
+{
+  "protocol": "exitline-1",
+  "network": 61999,
+  "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+  "walker": "0x26f98866d8f07d1bea1e0b7daf961716c7535ae4",
+  "address": "0x8a53770267A917dCF2632d1ed2891c65d904Aa43",
+  "sourceSha256": "03aa4b4f54a69ae7858916b8aee6d32842ca8b4c42a2b5b4c714d153a64063d4",
+  "fixture": "Authored editorial + support-ticket workflows. Two zero-balance temporary test signers. Abstract models; no real document or ticket processing.",
+  "registry": [
+    {
+      "digest": "811effbc9d7ee437f92228f102f8739b416499de732368f925bebaa07db6501b",
+      "id": "editorial-open",
+      "index": 0,
+      "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+      "title": "A small editorial review loop"
+    },
+    {
+      "digest": "f37eaf0da85406b547bffa2c4ca253e63b37681f4c39764609cf4b13370e8fb1",
+      "id": "support-open",
+      "index": 1,
+      "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+      "title": "A small support ticket loop"
+    }
+  ],
+  "transactions": [
+    {
+      "label": "11-register-editorial",
+      "hash": "0xf551527f3c4472116b7379d37e55c5adb27ca76912ae68bb27c9a69cee3035f7",
+      "method": "register_model",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "editorial-open"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0cf3809a31B0c7E0742d126451aDE1977e3748D2": "agree",
+        "0x2C93031BCCd12836A67f81a249e68abAFEaac2E5": "agree",
+        "0x2bB088e4E6Fd1faBBd23d93F38D01f28a954A49c": "agree",
+        "0x709a1dDECA594C16AB3864A00Eaa2BB1Cd9b5305": "idle",
+        "0x711353514049EAc21213834ADd07eF552aF394E6": "idle"
+      }
+    },
+    {
+      "label": "12-register-support",
+      "hash": "0x43e3fd49cee1d8eb63bbe7df9838e237f9358402fa626cda3742003594c2dd53",
+      "method": "register_model",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "support-open"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x560FBD37a10bC2B96F118071e922c9106c12Ba1d": "agree",
+        "0x711353514049EAc21213834ADd07eF552aF394E6": "agree",
+        "0x8f1abcAF0fF10678Af925f83b2Bb8b3534c4b94b": "idle",
+        "0xC65Ec56a1141866951B34D846be8EF433764A48B": "agree",
+        "0xf1EAD5E5f876eae701eF1881b42861079cd9A287": "agree"
+      }
+    }
+  ]
+}

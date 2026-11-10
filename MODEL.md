@@ -27,11 +27,19 @@ An unreachable trap is outside the completion-from-start property. An unknown ce
 | `analyze` | `id, title, states_json, actions_json, terminal_index, rules` | Interpret and store one owner-namespaced immutable model |
 | `publish` | `id, expected_digest` | Owner publishes only a NONBLOCKING record |
 | `advance` | `owner, id, expected_step, action_index` | Sender advances their own rehearsal under a published model |
+| `register_model` | `owner, id` | Owner registers a published model in the public index; re-registration is a no-op |
+| `get_registry_count` | none | Number of registered models |
+| `get_registry_entry` | `index` | One registry entry (owner, id, title, digest), or empty string |
+| `list_registry` | none | All registry entries in registration order |
 | `get_model` | `owner, id` | JSON model, or empty string |
 | `get_journey` | `owner, id, participant` | JSON rehearsal, or empty string before first action |
 | `get_protocol` | none | `exitline-1` |
 
-IDs contain 1–40 lowercase letters, digits or hyphens. Model titles have 3–120 characters; state/action names 2–48 characters. Public records are not globally enumerable through the contract API; share their owner-qualified reference.
+IDs contain 1–40 lowercase letters, digits or hyphens. Model titles have 3–120 characters; state/action names 2–48 characters. A model is addressed by its owner-qualified reference. A published model can additionally be registered: the owner calls `register_model`, and the entry joins a public on-chain index anyone can list with `list_registry` — no slug knowledge required. Registration requires a published NONBLOCKING model and the sender to be its owner; registering an unpublished model, a missing model, or someone else's model fails deterministically. Registration never changes the model, its digest, or its publication.
+
+## Public registry
+
+The registry is a plain append-only index in the same contract. Entries are stored in registration order and carry the model owner, id, title, and digest — the same digest publication was checked against, so a library entry always names the exact analyzed record. There is no unregister in this version: a registered entry stays listed. A rehearsal is per participant, so any wallet can walk a registered model from the library without a mechanism change.
 
 A model ID is not reusable. Corrections create a new ID. Failed consensus does not create a stored model. Neither publication nor a rehearsal performs another model call.
 

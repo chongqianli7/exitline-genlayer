@@ -21,6 +21,12 @@ RULES='Draft Forward goes to Review; Draft Return is forbidden. Review Forward g
 OPEN=[[1,-1],[3,2],[1,2],[-1,-1]];TRAP=[[1,-1],[3,2],[2,2],[-1,-1]]
 def output(matrix=OPEN):
  return {'cells':[dict(state=S[s],action=ACT[a],target='BLOCK' if matrix[s][a]==-1 else 'UNKNOWN' if matrix[s][a]==-2 else S[matrix[s][a]],quote=RULES) for s in range(3) for a in range(2)]}
+SS=['New','Triage','Waiting','Escalated','Resolved'];SACT=['Advance','Return']
+SRULES_TRAP='New: Advance sends the ticket to Triage. Return is forbidden in New. Triage: Advance sends the ticket to Waiting. Return sends the ticket back to New. Waiting: Advance resolves the ticket in Resolved. Return escalates the ticket to Escalated. Escalated: Advance keeps the ticket in Escalated. Return also keeps the ticket in Escalated. Resolved is terminal.'
+SRULES_OPEN='New: Advance sends the ticket to Triage. Return is forbidden in New. Triage: Advance sends the ticket to Waiting. Return sends the ticket back to New. Waiting: Advance resolves the ticket in Resolved. Return escalates the ticket to Escalated. Escalated: Advance sends the ticket back to Waiting. Return sends the ticket back to Triage. Resolved is terminal.'
+STRAP=[[1,-1],[2,0],[4,3],[3,3],[-1,-1]];SOPEN=[[1,-1],[2,0],[4,3],[2,1],[-1,-1]]
+def soutput(matrix=SOPEN,rules=SRULES_OPEN):
+ return {'cells':[dict(state=SS[s],action=SACT[a],target='BLOCK' if matrix[s][a]==-1 else 'UNKNOWN' if matrix[s][a]==-2 else SS[matrix[s][a]],quote=rules) for s in range(4) for a in range(2)]}
 class Tests(unittest.TestCase):
  def setUp(self):answers.clear();sender.sender_address=A;self.r=c.Exitline()
  def model(self,which=OPEN,id='test'):
@@ -99,4 +105,34 @@ class Tests(unittest.TestCase):
     at=0
     for action in result['witness']:at=matrix[at][action]
     self.assertIn(at,expected)
+ def support(self,which=SOPEN,id='support-open',rules=SRULES_OPEN):
+  answers.extend([soutput(which,rules),soutput(which,rules)]);return json.loads(self.r.analyze(id,'Support ticket loop',json.dumps(SS),json.dumps(SACT),4,rules))
+ def publish_support(self,**kw):
+  r=self.support(**kw);self.r.publish(r['id'],r['digest']);return r
+ def test_support_trap_has_three_step_witness(self):
+  r=self.support(STRAP,'support-trap',SRULES_TRAP);self.assertEqual(r['status'],'TRAPPED');self.assertEqual(r['analysis']['trapped'],[3]);self.assertEqual(r['analysis']['witness'],[0,0,1])
+  with self.assertRaisesRegex(Error,'NOT_PUBLISHED'):self.r.register_model(A,'support-trap')
+ def test_support_repair_certifies_each_reachable_exit(self):
+  r=self.support();self.assertEqual(r['status'],'NONBLOCKING')
+  for e in r['analysis']['exits']:
+   s=e['state']
+   for a in e['actions']:s=r['matrix'][s][a]
+   self.assertEqual(s,4)
+ def test_registry_lists_published_models_in_order(self):
+  e=self.publish();s=self.publish_support();self.assertEqual(self.r.get_registry_count(),0);self.assertEqual(json.loads(self.r.list_registry()),[])
+  re_=json.loads(self.r.register_model(A,'test'));rs=json.loads(self.r.register_model(A,'support-open'))
+  self.assertEqual((re_['index'],re_['owner'],re_['id'],re_['title'],re_['digest']),(0,A.lower(),'test','Editorial loop',e['digest']))
+  self.assertEqual((rs['index'],rs['id'],rs['digest']),(1,'support-open',s['digest']))
+  self.assertEqual(self.r.get_registry_count(),2);self.assertEqual(json.loads(self.r.get_registry_entry(0)),re_);self.assertEqual(json.loads(self.r.get_registry_entry(1)),rs);self.assertEqual(self.r.get_registry_entry(2),'')
+  self.assertEqual([x['id'] for x in json.loads(self.r.list_registry())],['test','support-open'])
+ def test_registry_rejects_unpublished_missing_and_wrong_owner(self):
+  self.support(STRAP,'support-trap',SRULES_TRAP)
+  with self.assertRaisesRegex(Error,'NOT_PUBLISHED'):self.r.register_model(A,'support-trap')
+  with self.assertRaisesRegex(Error,'NOT_FOUND'):self.r.register_model(A,'no-such-model')
+  self.publish();sender.sender_address=B
+  with self.assertRaisesRegex(Error,'NOT_MODEL_OWNER'):self.r.register_model(A,'test')
+  with self.assertRaisesRegex(Error,'INVALID_ID'):self.r.register_model(B,'Bad_Slug!')
+  with self.assertRaisesRegex(Error,'INVALID_ADDRESS'):self.r.register_model('not-an-address','test')
+ def test_registry_reregistration_is_a_noop(self):
+  self.publish();first=self.r.register_model(A,'test');second=self.r.register_model(A,'test');self.assertEqual(first,second);self.assertEqual(self.r.get_registry_count(),1);self.assertEqual([x['id'] for x in json.loads(self.r.list_registry())],['test'])
 if __name__=='__main__':unittest.main()

@@ -1,0 +1,429 @@
+{
+  "protocol": "exitline-1",
+  "network": 61999,
+  "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+  "walker": "0x26f98866d8f07d1bea1e0b7daf961716c7535ae4",
+  "address": "0x8a53770267A917dCF2632d1ed2891c65d904Aa43",
+  "sourceSha256": "03aa4b4f54a69ae7858916b8aee6d32842ca8b4c42a2b5b4c714d153a64063d4",
+  "fixture": "Authored editorial + support-ticket workflows. Two zero-balance temporary test signers. Abstract models; no real document or ticket processing.",
+  "records": [
+    {
+      "actions": [
+        "Advance",
+        "Return"
+      ],
+      "analysis": {
+        "can_finish": [
+          0,
+          1,
+          2,
+          4
+        ],
+        "exits": [
+          {
+            "actions": [
+              0,
+              0,
+              0
+            ],
+            "state": 0
+          },
+          {
+            "actions": [
+              0,
+              0
+            ],
+            "state": 1
+          },
+          {
+            "actions": [
+              0
+            ],
+            "state": 2
+          },
+          {
+            "actions": [],
+            "state": 4
+          },
+          {
+            "actions": null,
+            "state": 3
+          }
+        ],
+        "reachable": [
+          0,
+          1,
+          2,
+          4,
+          3
+        ],
+        "status": "TRAPPED",
+        "trapped": [
+          3
+        ],
+        "witness": [
+          0,
+          0,
+          1
+        ]
+      },
+      "cells": [
+        {
+          "action": "Advance",
+          "quote": "New: Advance sends the ticket to Triage. Return is forbidden in New.",
+          "state": "New",
+          "target": "Triage"
+        },
+        {
+          "action": "Return",
+          "quote": "New: Advance sends the ticket to Triage. Return is forbidden in New.",
+          "state": "New",
+          "target": "BLOCK"
+        },
+        {
+          "action": "Advance",
+          "quote": "Triage: Advance sends the ticket to Waiting. Return sends the ticket back to New.",
+          "state": "Triage",
+          "target": "Waiting"
+        },
+        {
+          "action": "Return",
+          "quote": "Triage: Advance sends the ticket to Waiting. Return sends the ticket back to New.",
+          "state": "Triage",
+          "target": "New"
+        },
+        {
+          "action": "Advance",
+          "quote": "Waiting: Advance resolves the ticket in Resolved. Return escalates the ticket to Escalated.",
+          "state": "Waiting",
+          "target": "Resolved"
+        },
+        {
+          "action": "Return",
+          "quote": "Waiting: Advance resolves the ticket in Resolved. Return escalates the ticket to Escalated.",
+          "state": "Waiting",
+          "target": "Escalated"
+        },
+        {
+          "action": "Advance",
+          "quote": "Escalated: Advance keeps the ticket in Escalated. Return also keeps the ticket in Escalated.",
+          "state": "Escalated",
+          "target": "Escalated"
+        },
+        {
+          "action": "Return",
+          "quote": "Escalated: Advance keeps the ticket in Escalated. Return also keeps the ticket in Escalated.",
+          "state": "Escalated",
+          "target": "Escalated"
+        }
+      ],
+      "digest": "4adaac57b10a0b1dc21d8d7b0abb2d0037259ca343015dda51a8242590b23424",
+      "id": "support-trap",
+      "matrix": [
+        [
+          1,
+          -1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          -1,
+          -1
+        ]
+      ],
+      "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+      "protocol": "exitline-1",
+      "published": false,
+      "rules": "New: Advance sends the ticket to Triage. Return is forbidden in New. Triage: Advance sends the ticket to Waiting. Return sends the ticket back to New. Waiting: Advance resolves the ticket in Resolved. Return escalates the ticket to Escalated. Escalated: Advance keeps the ticket in Escalated. Return also keeps the ticket in Escalated. Resolved is terminal.",
+      "states": [
+        "New",
+        "Triage",
+        "Waiting",
+        "Escalated",
+        "Resolved"
+      ],
+      "status": "TRAPPED",
+      "terminal": 4,
+      "title": "A small support ticket loop"
+    },
+    {
+      "actions": [
+        "Advance",
+        "Return"
+      ],
+      "analysis": {
+        "can_finish": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "exits": [
+          {
+            "actions": [
+              0,
+              0,
+              0
+            ],
+            "state": 0
+          },
+          {
+            "actions": [
+              0,
+              0
+            ],
+            "state": 1
+          },
+          {
+            "actions": [
+              0
+            ],
+            "state": 2
+          },
+          {
+            "actions": [],
+            "state": 4
+          },
+          {
+            "actions": [
+              0,
+              0
+            ],
+            "state": 3
+          }
+        ],
+        "reachable": [
+          0,
+          1,
+          2,
+          4,
+          3
+        ],
+        "status": "NONBLOCKING",
+        "trapped": [],
+        "witness": []
+      },
+      "cells": [
+        {
+          "action": "Advance",
+          "quote": "New: Advance sends the ticket to Triage.",
+          "state": "New",
+          "target": "Triage"
+        },
+        {
+          "action": "Return",
+          "quote": "Return is forbidden in New.",
+          "state": "New",
+          "target": "BLOCK"
+        },
+        {
+          "action": "Advance",
+          "quote": "Triage: Advance sends the ticket to Waiting.",
+          "state": "Triage",
+          "target": "Waiting"
+        },
+        {
+          "action": "Return",
+          "quote": "Return sends the ticket back to New.",
+          "state": "Triage",
+          "target": "New"
+        },
+        {
+          "action": "Advance",
+          "quote": "Waiting: Advance resolves the ticket in Resolved.",
+          "state": "Waiting",
+          "target": "Resolved"
+        },
+        {
+          "action": "Return",
+          "quote": "Return escalates the ticket to Escalated.",
+          "state": "Waiting",
+          "target": "Escalated"
+        },
+        {
+          "action": "Advance",
+          "quote": "Escalated: Advance sends the ticket back to Waiting.",
+          "state": "Escalated",
+          "target": "Waiting"
+        },
+        {
+          "action": "Return",
+          "quote": "Return sends the ticket back to Triage.",
+          "state": "Escalated",
+          "target": "Triage"
+        }
+      ],
+      "digest": "f37eaf0da85406b547bffa2c4ca253e63b37681f4c39764609cf4b13370e8fb1",
+      "id": "support-open",
+      "matrix": [
+        [
+          1,
+          -1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          -1,
+          -1
+        ]
+      ],
+      "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+      "protocol": "exitline-1",
+      "published": true,
+      "rules": "New: Advance sends the ticket to Triage. Return is forbidden in New. Triage: Advance sends the ticket to Waiting. Return sends the ticket back to New. Waiting: Advance resolves the ticket in Resolved. Return escalates the ticket to Escalated. Escalated: Advance sends the ticket back to Waiting. Return sends the ticket back to Triage. Resolved is terminal.",
+      "states": [
+        "New",
+        "Triage",
+        "Waiting",
+        "Escalated",
+        "Resolved"
+      ],
+      "status": "NONBLOCKING",
+      "terminal": 4,
+      "title": "A small support ticket loop"
+    }
+  ],
+  "transactions": [
+    {
+      "label": "07-support-trap-analysis",
+      "hash": "0xa5985a6a520895df8b348c570218b3f7efb5d09be0cded946a576c4627b814ab",
+      "method": "analyze",
+      "args": [
+        "support-trap",
+        "A small support ticket loop",
+        "[\"New\",\"Triage\",\"Waiting\",\"Escalated\",\"Resolved\"]",
+        "[\"Advance\",\"Return\"]",
+        4,
+        "New: Advance sends the ticket to Triage. Return is forbidden in New. Triage: Advance sends the ticket to Waiting. Return sends the ticket back to New. Waiting: Advance resolves the ticket in Resolved. Return escalates the ticket to Escalated. Escalated: Advance keeps the ticket in Escalated. Return also keeps the ticket in Escalated. Resolved is terminal."
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x2C93031BCCd12836A67f81a249e68abAFEaac2E5": "idle",
+        "0x37CD8552B86b2B662eCfb69C4A1253dBE41EB4C1": "agree",
+        "0x560FBD37a10bC2B96F118071e922c9106c12Ba1d": "agree",
+        "0x711353514049EAc21213834ADd07eF552aF394E6": "idle",
+        "0x8ADae333478F9D037c78b0E3E8279DdAAb20a1B3": "agree"
+      }
+    },
+    {
+      "label": "08-support-trap-publication-denied",
+      "hash": "0xf5e824054d439d64e1280549d7e834a5922b4da791f67f2c62426d374772176b",
+      "method": "publish",
+      "args": [
+        "support-trap",
+        "4adaac57b10a0b1dc21d8d7b0abb2d0037259ca343015dda51a8242590b23424"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "ERROR"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "ERROR"
+        }
+      ],
+      "votes": {
+        "0x0cf3809a31B0c7E0742d126451aDE1977e3748D2": "agree",
+        "0x711353514049EAc21213834ADd07eF552aF394E6": "idle",
+        "0x8f1abcAF0fF10678Af925f83b2Bb8b3534c4b94b": "idle",
+        "0xD0eD149D26E76cf49fB588c970E608E44Dd4DAB8": "agree",
+        "0xe83D7241D0FF0f1f808B9ab3cb06dD2565bDc605": "agree"
+      }
+    },
+    {
+      "label": "09-support-analysis",
+      "hash": "0x5e9d2f5c36f4324bd7d9429de400d6aaa0d822fb4613f2061d3c5b7a81823d58",
+      "method": "analyze",
+      "args": [
+        "support-open",
+        "A small support ticket loop",
+        "[\"New\",\"Triage\",\"Waiting\",\"Escalated\",\"Resolved\"]",
+        "[\"Advance\",\"Return\"]",
+        4,
+        "New: Advance sends the ticket to Triage. Return is forbidden in New. Triage: Advance sends the ticket to Waiting. Return sends the ticket back to New. Waiting: Advance resolves the ticket in Resolved. Return escalates the ticket to Escalated. Escalated: Advance sends the ticket back to Waiting. Return sends the ticket back to Triage. Resolved is terminal."
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0cf3809a31B0c7E0742d126451aDE1977e3748D2": "agree",
+        "0x711353514049EAc21213834ADd07eF552aF394E6": "idle",
+        "0x8ADae333478F9D037c78b0E3E8279DdAAb20a1B3": "idle",
+        "0xD0eD149D26E76cf49fB588c970E608E44Dd4DAB8": "agree",
+        "0xc675c2B7E1F066B7c1D2fe54EF7B76C91CdFa5F4": "agree"
+      }
+    },
+    {
+      "label": "10-support-publish",
+      "hash": "0x4a774b0649b1f5beaa8290ae20fb2da29d0d6a509bf0866aba329a0c6f52e0d9",
+      "method": "publish",
+      "args": [
+        "support-open",
+        "f37eaf0da85406b547bffa2c4ca253e63b37681f4c39764609cf4b13370e8fb1"
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x0cf3809a31B0c7E0742d126451aDE1977e3748D2": "agree",
+        "0x2C93031BCCd12836A67f81a249e68abAFEaac2E5": "agree",
+        "0x2bB088e4E6Fd1faBBd23d93F38D01f28a954A49c": "agree",
+        "0x560FBD37a10bC2B96F118071e922c9106c12Ba1d": "idle",
+        "0x709a1dDECA594C16AB3864A00Eaa2BB1Cd9b5305": "idle"
+      }
+    }
+  ]
+}

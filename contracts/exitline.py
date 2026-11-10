@@ -94,10 +94,12 @@ def audit(states, actions, terminal, matrix):
 class Exitline(gl.Contract):
     models: TreeMap[str, str]
     journeys: TreeMap[str, str]
+    registry: TreeMap[str, str]
 
     def __init__(self):
         self.models = TreeMap()
         self.journeys = TreeMap()
+        self.registry = TreeMap()
 
     def _load(self, owner, slug):
         raw = self.models.get(key(owner, slug), '')
@@ -175,6 +177,45 @@ class Exitline(gl.Contract):
         raw = json.dumps(r, sort_keys=True)
         self.models[key(owner, slug)] = raw
         return raw
+
+    @gl.public.write
+    def register_model(self, owner: str, slug: str) -> str:
+        sender = str(gl.message.sender_address).lower()
+        owner = address(owner)
+        if sender != owner:
+            fail('NOT_MODEL_OWNER')
+        r = self._load(owner, slug)
+        if r['status'] != 'NONBLOCKING' or not r['published']:
+            fail('NOT_PUBLISHED')
+        by_key = 'by_key:' + key(owner, slug)
+        existing = self.registry.get(by_key, '')
+        if existing != '':
+            return self.registry.get('entry:' + existing, '')
+        count = int(self.registry.get('count', '0'))
+        entry = {'index': count, 'owner': owner, 'id': slug, 'title': r['title'], 'digest': r['digest']}
+        raw = json.dumps(entry, sort_keys=True)
+        self.registry['entry:' + str(count)] = raw
+        self.registry[by_key] = str(count)
+        self.registry['count'] = str(count + 1)
+        return raw
+
+    @gl.public.view
+    def get_registry_count(self) -> int:
+        return int(self.registry.get('count', '0'))
+
+    @gl.public.view
+    def get_registry_entry(self, index: int) -> str:
+        return self.registry.get('entry:' + str(index), '')
+
+    @gl.public.view
+    def list_registry(self) -> str:
+        count = int(self.registry.get('count', '0'))
+        entries = []
+        for i in range(count):
+            raw = self.registry.get('entry:' + str(i), '')
+            if raw:
+                entries.append(json.loads(raw))
+        return json.dumps(entries, sort_keys=True)
 
     @gl.public.write
     def advance(self, owner: str, slug: str, expected_step: int, action_index: int) -> str:

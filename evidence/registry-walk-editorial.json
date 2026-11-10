@@ -1,0 +1,204 @@
+{
+  "protocol": "exitline-1",
+  "network": 61999,
+  "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+  "walker": "0x26f98866d8f07d1bea1e0b7daf961716c7535ae4",
+  "address": "0x8a53770267A917dCF2632d1ed2891c65d904Aa43",
+  "sourceSha256": "03aa4b4f54a69ae7858916b8aee6d32842ca8b4c42a2b5b4c714d153a64063d4",
+  "fixture": "Authored editorial + support-ticket workflows. Two zero-balance temporary test signers. Abstract models; no real document or ticket processing.",
+  "model": {
+    "actions": [
+      "Forward",
+      "Return"
+    ],
+    "analysis": {
+      "can_finish": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "exits": [
+        {
+          "actions": [
+            0,
+            0
+          ],
+          "state": 0
+        },
+        {
+          "actions": [
+            0
+          ],
+          "state": 1
+        },
+        {
+          "actions": [],
+          "state": 3
+        },
+        {
+          "actions": [
+            0,
+            0
+          ],
+          "state": 2
+        }
+      ],
+      "reachable": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "status": "NONBLOCKING",
+      "trapped": [],
+      "witness": []
+    },
+    "cells": [
+      {
+        "action": "Forward",
+        "quote": "Draft: Forward sends the document to Review.",
+        "state": "Draft",
+        "target": "Review"
+      },
+      {
+        "action": "Return",
+        "quote": "Return is forbidden in Draft.",
+        "state": "Draft",
+        "target": "BLOCK"
+      },
+      {
+        "action": "Forward",
+        "quote": "Review: Forward completes the process in Done.",
+        "state": "Review",
+        "target": "Done"
+      },
+      {
+        "action": "Return",
+        "quote": "Return sends the document to Revision.",
+        "state": "Review",
+        "target": "Revision"
+      },
+      {
+        "action": "Forward",
+        "quote": "Revision: Forward sends the document back to Review.",
+        "state": "Revision",
+        "target": "Review"
+      },
+      {
+        "action": "Return",
+        "quote": "Return keeps the document in Revision.",
+        "state": "Revision",
+        "target": "Revision"
+      }
+    ],
+    "digest": "811effbc9d7ee437f92228f102f8739b416499de732368f925bebaa07db6501b",
+    "id": "editorial-open",
+    "matrix": [
+      [
+        1,
+        -1
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        -1,
+        -1
+      ]
+    ],
+    "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+    "protocol": "exitline-1",
+    "published": true,
+    "rules": "Draft: Forward sends the document to Review. Return is forbidden in Draft. Review: Forward completes the process in Done. Return sends the document to Revision. Revision: Forward sends the document back to Review. Return keeps the document in Revision. Done is terminal.",
+    "states": [
+      "Draft",
+      "Review",
+      "Revision",
+      "Done"
+    ],
+    "status": "NONBLOCKING",
+    "terminal": 3,
+    "title": "A small editorial review loop"
+  },
+  "journey": {
+    "actions": [
+      0,
+      0
+    ],
+    "complete": true,
+    "id": "editorial-open",
+    "model_digest": "811effbc9d7ee437f92228f102f8739b416499de732368f925bebaa07db6501b",
+    "owner": "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+    "participant": "0x26f98866d8f07d1bea1e0b7daf961716c7535ae4",
+    "state": 3,
+    "step": 2
+  },
+  "transactions": [
+    {
+      "label": "19-walk-editorial-1",
+      "hash": "0xf6dc308abb9e2e23394cbc37577f464ba873b3601725c35771a3f09bc60fe531",
+      "method": "advance",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "editorial-open",
+        0,
+        0
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x1Cd67946A11E6410a3DF1b27d35F4a511e93c882": "idle",
+        "0x709a1dDECA594C16AB3864A00Eaa2BB1Cd9b5305": "idle",
+        "0x8f1abcAF0fF10678Af925f83b2Bb8b3534c4b94b": "agree",
+        "0xD0eD149D26E76cf49fB588c970E608E44Dd4DAB8": "agree",
+        "0xf1EAD5E5f876eae701eF1881b42861079cd9A287": "agree"
+      }
+    },
+    {
+      "label": "20-walk-editorial-2",
+      "hash": "0xf7c5398c9577f3a834023a5bb77b13f14bd68f04cceccb01edf80d51dde60409",
+      "method": "advance",
+      "args": [
+        "0x8d120f7a44fe195f69be599c89a8a4d777d86a35",
+        "editorial-open",
+        1,
+        0
+      ],
+      "status": 7,
+      "result": 6,
+      "execution_result": [
+        {
+          "mode": "leader",
+          "execution_result": "SUCCESS"
+        },
+        {
+          "mode": "validator",
+          "execution_result": "SUCCESS"
+        }
+      ],
+      "votes": {
+        "0x2C93031BCCd12836A67f81a249e68abAFEaac2E5": "agree",
+        "0x2bB088e4E6Fd1faBBd23d93F38D01f28a954A49c": "agree",
+        "0x37CD8552B86b2B662eCfb69C4A1253dBE41EB4C1": "idle",
+        "0x560FBD37a10bC2B96F118071e922c9106c12Ba1d": "agree",
+        "0xC65Ec56a1141866951B34D846be8EF433764A48B": "idle"
+      }
+    }
+  ]
+}
